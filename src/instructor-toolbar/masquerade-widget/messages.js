@@ -16,6 +16,11 @@ const messages = defineMessages({
     defaultMessage: 'Masquerade as this user',
     description: 'Label for the masquerade user input',
   },
+  viewCourseAs: {
+    id: 'masquerade-widget.text.view',
+    defaultMessage: 'View this course as',
+    description: 'View course as individual',
+  },
 });
 
 export default messages;
