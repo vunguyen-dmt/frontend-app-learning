@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { getAuthenticatedUser } from '@edx/frontend-platform/auth';
 import classNames from 'classnames';
 
 import messages from './messages';
@@ -9,6 +10,20 @@ import Tabs from '../generic/tabs/Tabs';
 function CourseTabsNavigation({
   activeTabSlug, className, tabs, intl,
 }) {
+
+  useEffect(() => {
+    const script = document.createElement("script");
+		script.type = "application/json";
+		script.innerHTML = `gtag('config', 'G-XDGY5ZHRR0', {
+      'user_id': ${getAuthenticatedUser().userId} 
+      });`;
+		script.async = true;
+		document.head.appendChild(script);
+		return () => {
+		  document.head.removeChild(script);
+		}
+  });
+
   return (
     <div id="courseTabsNavigation" className={classNames('course-tabs-navigation', className)}>
       <div className="container-xl">
