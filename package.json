@@ -31,9 +31,9 @@
   "dependencies": {
     "@edx/brand": "npm:@edx/brand-openedx@1.2.0",
     "@edx/frontend-component-footer": "^12.0.0",
-    "@edx/frontend-component-header": "^4.0.0",
-    "@edx/frontend-lib-special-exams": "^2.16.1",
-    "@edx/frontend-platform": "^4.2.0",
+    "@edx/frontend-component-header": "github:vunguyen-dmt/frontend-component-header#v4.0.0_vi_dist",
+    "@edx/frontend-lib-special-exams": "github:vunguyen-dmt/frontend-lib-special-exams#v2.16.1_vi_dist",
+    "@edx/frontend-platform": "github:vunguyen-dmt/frontend-platform#v4.2.0_vi_dist",
     "@edx/paragon": "20.28.4",
     "@fortawesome/fontawesome-svg-core": "1.3.0",
     "@fortawesome/free-brands-svg-icons": "5.15.4",
