@@ -22,7 +22,7 @@ const DecodePageRoute = (props) => {
       params[param] = decodeUrl(params[param]);
     });
 
-    const newUrl = generatePath(path, params);
+    const newUrl = decodeURIComponent(generatePath(path, params));
 
     // if the url get decoded, reroute to the decoded url
     if (newUrl !== url) {
