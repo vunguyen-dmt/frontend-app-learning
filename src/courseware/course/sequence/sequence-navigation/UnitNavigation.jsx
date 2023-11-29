@@ -22,14 +22,16 @@ const UnitNavigation = ({
   onClickNext,
   goToCourseExitPage,
 }) => {
-  const { isFirstUnit, isLastUnit } = useSequenceNavigationMetadata(sequenceId, unitId);
+  const {
+    isFirstUnit, isLastUnit, isSequenceFirstUnit, isSequenceLastUnit,
+  } = useSequenceNavigationMetadata(sequenceId, unitId);
   const { courseId } = useSelector(state => state.courseware);
 
   const renderNextButton = () => {
     const { exitActive, exitText } = GetCourseExitNavigation(courseId, intl);
     const buttonOnClick = isLastUnit ? goToCourseExitPage : onClickNext;
     const buttonText = (isLastUnit && exitText) ? exitText : intl.formatMessage(messages.nextButton);
-    const disabled = isLastUnit && !exitActive;
+    const disabled = (isLastUnit && !exitActive) || isSequenceLastUnit;
     const nextArrow = isRtl(getLocale()) ? faChevronLeft : faChevronRight;
     return (
       <Button
@@ -48,17 +50,20 @@ const UnitNavigation = ({
 
   const prevArrow = isRtl(getLocale()) ? faChevronRight : faChevronLeft;
   return (
-    <div className="unit-navigation d-flex">
-      <Button
-        variant="outline-secondary"
-        className="previous-button mr-2 d-flex align-items-center justify-content-center"
-        disabled={isFirstUnit}
-        onClick={onClickPrevious}
-      >
-        <FontAwesomeIcon icon={prevArrow} className="mr-2" size="sm" />
-        {intl.formatMessage(messages.previousButton)}
-      </Button>
-      {renderNextButton()}
+    <div>
+      {isSequenceLastUnit && <p className="text-center mb-3 alert alert-primary" role="alert">You&apos;ve reached the end of this exam.</p>}
+      <div className="unit-navigation d-flex">
+        <Button
+          variant="outline-secondary"
+          className="previous-button mr-2 d-flex align-items-center justify-content-center"
+          disabled={isFirstUnit || isSequenceFirstUnit}
+          onClick={onClickPrevious}
+        >
+          <FontAwesomeIcon icon={prevArrow} className="mr-2" size="sm" />
+          {intl.formatMessage(messages.previousButton)}
+        </Button>
+        {renderNextButton()}
+      </div>
     </div>
   );
 };

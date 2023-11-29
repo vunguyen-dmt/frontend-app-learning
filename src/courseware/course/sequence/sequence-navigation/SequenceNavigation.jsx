@@ -31,7 +31,7 @@ const SequenceNavigation = ({
   goToCourseExitPage,
 }) => {
   const sequence = useModel('sequences', sequenceId);
-  const { isFirstUnit, isLastUnit } = useSequenceNavigationMetadata(sequenceId, unitId);
+  const { isFirstUnit, isLastUnit, isSequenceFirstUnit, isSequenceLastUnit } = useSequenceNavigationMetadata(sequenceId, unitId);
   const {
     courseId,
     sequenceStatus,
@@ -67,7 +67,7 @@ const SequenceNavigation = ({
     const { exitActive, exitText } = GetCourseExitNavigation(courseId, intl);
     const buttonOnClick = isLastUnit ? goToCourseExitPage : nextSequenceHandler;
     const buttonText = (isLastUnit && exitText) ? exitText : intl.formatMessage(messages.nextButton);
-    const disabled = isLastUnit && !exitActive;
+    const disabled = (isLastUnit && !exitActive) || isSequenceLastUnit;
     const nextArrow = isRtl(getLocale()) ? ChevronLeft : ChevronRight;
 
     return (
@@ -80,14 +80,17 @@ const SequenceNavigation = ({
   const prevArrow = isRtl(getLocale()) ? ChevronRight : ChevronLeft;
 
   return sequenceStatus === LOADED && (
-    <nav id="courseware-sequenceNavigation" className={classNames('sequence-navigation', className)} style={{ width: shouldDisplayNotificationTriggerInSequence ? '90%' : null }}>
-      <Button variant="link" className="previous-btn" onClick={previousSequenceHandler} disabled={isFirstUnit} iconBefore={prevArrow}>
-        {shouldDisplayNotificationTriggerInSequence ? null : intl.formatMessage(messages.previousButton)}
-      </Button>
-      {renderUnitButtons()}
-      {renderNextButton()}
+    <div>
+      <nav id="courseware-sequenceNavigation" className={classNames('sequence-navigation', className)} style={{ width: shouldDisplayNotificationTriggerInSequence ? '90%' : null }}>
+        <Button variant="link" className="previous-btn" onClick={previousSequenceHandler} disabled={isFirstUnit || isSequenceFirstUnit} iconBefore={prevArrow}>
+          {shouldDisplayNotificationTriggerInSequence ? null : intl.formatMessage(messages.previousButton)}
+        </Button>
+        {renderUnitButtons()}
+        {renderNextButton()}
+      </nav>
+      {isSequenceFirstUnit && <p className="unit-container ml-auto mr-auto  text-center mb-3 alert alert-primary" role="alert">This is the start of the exam. This exam might contain many units keep on going until you see a message indicating that you have reached the end of the exam.</p>}
+    </div>
 
-    </nav>
   );
 };
 

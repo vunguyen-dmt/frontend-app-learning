@@ -20,6 +20,8 @@ export function useSequenceNavigationMetadata(currentSequenceId, currentUnitId) 
   const isLastSequence = sequenceIds.indexOf(currentSequenceId) === sequenceIds.length - 1;
   const isLastUnitInSequence = sequence.unitIds.indexOf(currentUnitId) === sequence.unitIds.length - 1;
   const isLastUnit = isLastSequence && isLastUnitInSequence;
+  const isSequenceFirstUnit = sequence.unitIds.length > 0 && currentUnitId === sequence.unitIds[0];
+  const isSequenceLastUnit = sequence.unitIds.length > 0 && currentUnitId === sequence.unitIds[sequence.unitIds.length - 1];
 
-  return { isFirstUnit, isLastUnit };
+  return { isFirstUnit, isLastUnit, isSequenceFirstUnit, isSequenceLastUnit};
 }

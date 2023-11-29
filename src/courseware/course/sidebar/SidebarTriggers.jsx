@@ -10,7 +10,7 @@ const SidebarTriggers = () => {
   } = useContext(SidebarContext);
   return (
     <div className="d-flex ml-auto">
-      {SIDEBAR_ORDER.map((sidebarId) => {
+      {/* {SIDEBAR_ORDER.map((sidebarId) => {
         const { Trigger } = SIDEBARS[sidebarId];
         const isActive = sidebarId === currentSidebar;
         return (
@@ -22,7 +22,7 @@ const SidebarTriggers = () => {
             <Trigger onClick={() => toggleSidebar(sidebarId)} key={sidebarId} />
           </div>
         );
-      })}
+      })} */}
     </div>
   );
 };

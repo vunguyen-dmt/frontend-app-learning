@@ -141,11 +141,11 @@ const CourseLicense = ({
 
   return (
     <div className="text-right small py-1">
-      {licenseType === 'all-rights-reserved' && renderAllRightsReservedLicense()}
+      {/* {licenseType === 'all-rights-reserved' && renderAllRightsReservedLicense()}
       {licenseType === 'creative-commons' && renderCreativeCommonsLicense(
         Object.keys(licenseOptions),
         licenseVersion,
-      )}
+      )} */}
     </div>
   );
 };

@@ -156,11 +156,11 @@ const Unit = ({
     <div className="unit">
       <h1 className="mb-0 h3">{unit.title}</h1>
       <h2 className="sr-only">{intl.formatMessage(messages.headerPlaceholder)}</h2>
-      <BookmarkButton
+      {/* <BookmarkButton
         unitId={unit.id}
         isBookmarked={unit.bookmarked}
         isProcessing={unit.bookmarkedUpdateState === 'loading'}
-      />
+      /> */}
       {/* TODO: social share exp. Need to remove later */}
       {(window.expSocialShareAboutUrls && window.expSocialShareAboutUrls[unit.id] !== undefined) && (
         <ShareButton url={window.expSocialShareAboutUrls[unit.id]} />

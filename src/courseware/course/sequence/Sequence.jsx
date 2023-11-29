@@ -214,9 +214,11 @@ const Sequence = ({
 
   // sequence status 'failed' and any other unexpected sequence status.
   return (
-    <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
-      {intl.formatMessage(messages.loadFailure)}
-    </p>
+    <div>
+      <p className="text-center py-5 mx-auto" style={{ maxWidth: '30em' }}>
+        {intl.formatMessage(messages.loadFailure)}
+      </p>
+    </div>
   );
 };
 

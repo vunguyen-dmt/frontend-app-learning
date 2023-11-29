@@ -38,6 +38,9 @@ import PathFixesProvider from './generic/path-fixes';
 import LiveTab from './course-home/live-tab/LiveTab';
 import CourseAccessErrorPage from './generic/CourseAccessErrorPage';
 import DecodePageRoute from './decode-page-route';
+import Header from './custom-for-exam/Header/Header';
+import Footer from './custom-for-exam/Footer/Footer';
+import ExamDashboard from './custom-for-exam/ExamDashboard/ExamDashboard';
 
 subscribe(APP_READY, () => {
   ReactDOM.render(
@@ -45,6 +48,7 @@ subscribe(APP_READY, () => {
       <Helmet>
         <link rel="shortcut icon" href={getConfig().FAVICON_URL} type="image/x-icon" />
       </Helmet>
+      <Header />
       <PathFixesProvider>
         <NoticesProvider>
           <UserMessagesProvider>
@@ -52,27 +56,32 @@ subscribe(APP_READY, () => {
               <PageRoute exact path="/goal-unsubscribe/:token" component={GoalUnsubscribe} />
               <PageRoute path="/redirect" component={CoursewareRedirectLandingPage} />
               <DecodePageRoute path="/course/:courseId/access-denied" component={CourseAccessErrorPage} />
-              <DecodePageRoute path="/course/:courseId/home">
+              <DecodePageRoute path="/course/:courseId/exam-dashboard">
+                <TabContainer tab="outline" fetch={fetchOutlineTab} slice="courseHome">
+                  <ExamDashboard />
+                </TabContainer>
+              </DecodePageRoute>
+              {/* <DecodePageRoute path="/course/:courseId/home">
                 <TabContainer tab="outline" fetch={fetchOutlineTab} slice="courseHome">
                   <OutlineTab />
                 </TabContainer>
-              </DecodePageRoute>
-              <DecodePageRoute path="/course/:courseId/live">
+              </DecodePageRoute> */}
+              {/* <DecodePageRoute path="/course/:courseId/live">
                 <TabContainer tab="lti_live" fetch={fetchLiveTab} slice="courseHome">
                   <LiveTab />
                 </TabContainer>
-              </DecodePageRoute>
-              <DecodePageRoute path="/course/:courseId/dates">
+              </DecodePageRoute> */}
+              {/* <DecodePageRoute path="/course/:courseId/dates">
                 <TabContainer tab="dates" fetch={fetchDatesTab} slice="courseHome">
                   <DatesTab />
                 </TabContainer>
-              </DecodePageRoute>
-              <DecodePageRoute path="/course/:courseId/discussion/:path*">
+              </DecodePageRoute> */}
+              {/* <DecodePageRoute path="/course/:courseId/discussion/:path*">
                 <TabContainer tab="discussion" fetch={fetchDiscussionTab} slice="courseHome">
                   <DiscussionTab />
                 </TabContainer>
-              </DecodePageRoute>
-              <DecodePageRoute
+              </DecodePageRoute> */}
+              {/* <DecodePageRoute
                 path={[
                   '/course/:courseId/progress/:targetUserId/',
                   '/course/:courseId/progress',
@@ -86,12 +95,12 @@ subscribe(APP_READY, () => {
                     <ProgressTab />
                   </TabContainer>
                 )}
-              />
-              <DecodePageRoute path="/course/:courseId/course-end">
+              /> */}
+              {/* <DecodePageRoute path="/course/:courseId/course-end">
                 <TabContainer tab="courseware" fetch={fetchCourse} slice="courseware">
                   <CourseExit />
                 </TabContainer>
-              </DecodePageRoute>
+              </DecodePageRoute> */}
               <DecodePageRoute
                 path={[
                   '/course/:courseId/:sequenceId/:unitId',
@@ -104,6 +113,7 @@ subscribe(APP_READY, () => {
           </UserMessagesProvider>
         </NoticesProvider>
       </PathFixesProvider>
+      <Footer />
     </AppProvider>,
     document.getElementById('root'),
   );
