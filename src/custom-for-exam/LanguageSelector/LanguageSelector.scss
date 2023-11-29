@@ -1,0 +1,20 @@
+#home-change-language-button{
+    background-color: white;
+    color: #00262B;
+    border-color: #00262B;
+    &:hover {
+        border-color: #00262B;
+    }
+    margin-right: 1rem;
+}
+
+.small-language-selector {
+    font-size: 0.875rem;
+    button {
+        font-size: 0.875rem;
+        padding: 8px;
+    }
+    .pgn__dropdown-item {
+        font-size: 0.875rem;
+    }
+}

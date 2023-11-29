@@ -1,0 +1,42 @@
+.header-wp {
+    padding: 1rem;
+    border-bottom: 1px solid #CCCCCC;
+    .user-name {
+        font-weight: bold;
+    }
+    margin-bottom: 15px;
+    .logout-btn-wp {
+        margin-top: -8px;
+    }
+    .logout-btn {
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+    .lang-and-name-group {
+        display: flex;
+        margin-left: auto;
+    }
+    text-align: right;
+
+    .header-content-wp {
+        display: flex;
+        align-items: center;
+    }
+    .logo-wp {
+        img.logo {
+            box-sizing: content-box;
+            display: block;
+            height: 1.75rem;
+            position: relative;
+            top: 0.1em;
+        }
+    }
+
+    .course-name {
+        font-weight: bold;
+        margin: 0 1rem;
+        color: var(--secondary);
+        cursor: pointer;
+    }
+}
