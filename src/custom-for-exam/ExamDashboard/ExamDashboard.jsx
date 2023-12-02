@@ -101,10 +101,10 @@ const ExamDashboard = ({ intl }) => {
             { sections[section].sequenceIds.map((sequence) => (
               sequences[sequence].description === 'Timed Exam' && (
               <div className="ml-3 sequence-x">
-                <a href={`/course/${courseId}/${sequence}`}>{sequences[sequence].title}</a>
+                <a href={`/secure-exam/course/${courseId}/${sequence}`}>{sequences[sequence].title}</a>
                 <div>Due: {sequences[sequence].due}</div>
                 <div>
-                    <a href={`/course/${courseId}/${sequence}`}>View exam</a>
+                    <a href={`/secure-exam/course/${courseId}/${sequence}`}>View exam</a>
                 </div>
               </div>
               )

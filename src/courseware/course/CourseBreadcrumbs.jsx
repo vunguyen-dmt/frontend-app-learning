@@ -26,32 +26,7 @@ const CourseBreadcrumb = ({
         whiteSpace: 'nowrap',
       }}
       >
-        { getConfig().ENABLE_JUMPNAV !== 'true' || content.length < 2 || !isStaff
-          ? (
-            <Link
-              className="text-primary-500"
-              to={defaultContent.sequences.length
-                ? `/course/${courseId}/${defaultContent.sequences[0].id}`
-                : `/course/${courseId}/${defaultContent.id}`}
-            >
-              {defaultContent.label}
-            </Link>
-          )
-          : (
-            <SelectMenu isLink defaultMessage={defaultContent.label}>
-              {content.map(item => (
-                <JumpNavMenuItem
-                  isDefault={item.default}
-                  sequences={item.sequences}
-                  courseId={courseId}
-                  title={item.label}
-                  currentSequence={sequenceId}
-                  currentUnit={unitId}
-                />
-              ))}
-            </SelectMenu>
-          )}
-
+        {defaultContent.label}
       </li>
     </>
   );
@@ -123,34 +98,23 @@ const CourseBreadcrumbs = ({
   }, [courseStatus, sequenceStatus, allSequencesInSections]);
 
   return (
-    <></>
-    // <nav aria-label="breadcrumb" className="my-4 d-inline-block col-sm-10">
-    //   <ol className="list-unstyled d-flex  flex-nowrap align-items-center m-0">
-    //     <li className="list-unstyled col-auto m-0 p-0">
-    //       <Link
-    //         className="flex-shrink-0 text-primary"
-    //         to={`/course/${courseId}/home`}
-    //       >
-    //         <FontAwesomeIcon icon={faHome} className="mr-2" />
-    //         <FormattedMessage
-    //           id="learn.breadcrumb.navigation.course.home"
-    //           description="The course home link in breadcrumbs nav"
-    //           defaultMessage="Course"
-    //         />
-    //       </Link>
-    //     </li>
-    //     {links.map(content => (
-    //       <CourseBreadcrumb
-    //         courseId={courseId}
-    //         sequenceId={sequenceId}
-    //         content={content}
-    //         unitId={unitId}
-    //         withSeparator
-    //         isStaff={isStaff}
-    //       />
-    //     ))}
-    //   </ol>
-    // </nav>
+    <nav aria-label="breadcrumb" className="my-4 d-inline-block col-sm-10">
+      <ol className="list-unstyled d-flex  flex-nowrap align-items-center m-0">
+        <li className="list-unstyled col-auto m-0 p-0">
+          {course.title}
+        </li>
+        {links.map(content => (
+          <CourseBreadcrumb
+            courseId={courseId}
+            sequenceId={sequenceId}
+            content={content}
+            unitId={unitId}
+            withSeparator
+            isStaff={isStaff}
+          />
+        ))}
+      </ol>
+    </nav>
   );
 };
 

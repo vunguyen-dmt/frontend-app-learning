@@ -56,7 +56,12 @@ subscribe(APP_READY, () => {
               <PageRoute exact path="/goal-unsubscribe/:token" component={GoalUnsubscribe} />
               <PageRoute path="/redirect" component={CoursewareRedirectLandingPage} />
               <DecodePageRoute path="/course/:courseId/access-denied" component={CourseAccessErrorPage} />
-              <DecodePageRoute path="/course/:courseId/exam-dashboard">
+              <DecodePageRoute
+                path={[
+                  '/course/:courseId/exam-dashboard',
+                  '/course/:courseId/home',
+                ]}
+              >
                 <TabContainer tab="outline" fetch={fetchOutlineTab} slice="courseHome">
                   <ExamDashboard />
                 </TabContainer>
