@@ -36,10 +36,10 @@ const DecodePageRoute = ({ children }) => {
       params[param] = decodeUrl(params[param]);
     });
 
-    const newUrl = decodeURIComponent(generatePath(pattern.path, params));
-
+    const newUrl = generatePath(pattern.path, params);
+    const decodedPathname = decodeURIComponent(pathname);
     // if the url get decoded, reroute to the decoded url
-    if (newUrl !== pathname) {
+    if (newUrl !== decodedPathname) {
       return <Navigate to={newUrl} replace />;
     }
   }
