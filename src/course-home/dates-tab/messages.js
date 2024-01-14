@@ -36,6 +36,11 @@ const messages = defineMessages({
     defaultMessage: 'Verified only',
     description: 'Shown as label for assignments which learner has no access to.',
   },
+  due: {
+    id: 'learning.dates.due',
+    defaultMessage: 'due',
+    description: '',
+  }
 });
 
 export default messages;
