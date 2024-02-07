@@ -7,6 +7,7 @@ const SidebarTriggers = () => {
   const {
     toggleSidebar,
     currentSidebar,
+    shouldDisplayFullScreen
   } = useContext(SidebarContext);
   return (
     <div className={classNames('d-flex ml-auto', { 'justify-content-end': shouldDisplayFullScreen })}>
