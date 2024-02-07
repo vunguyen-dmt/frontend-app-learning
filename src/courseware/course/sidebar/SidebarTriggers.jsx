@@ -9,7 +9,7 @@ const SidebarTriggers = () => {
     currentSidebar,
   } = useContext(SidebarContext);
   return (
-    <div className="d-flex ml-auto">
+    <div className={classNames('d-flex ml-auto', { 'justify-content-end': shouldDisplayFullScreen })}>
       {SIDEBAR_ORDER.map((sidebarId) => {
         const { Trigger } = SIDEBARS[sidebarId];
         const isActive = sidebarId === currentSidebar;

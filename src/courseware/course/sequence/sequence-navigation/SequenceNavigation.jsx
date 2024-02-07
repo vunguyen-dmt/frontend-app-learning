@@ -106,7 +106,7 @@ const SequenceNavigation = ({
   };
 
   return sequenceStatus === LOADED && (
-    <nav id="courseware-sequenceNavigation" className={classNames('sequence-navigation', className)} style={{ width: shouldDisplayNotificationTriggerInSequence ? '90%' : null }}>
+    <nav id="courseware-sequenceNavigation" className={classNames('sequence-navigation', className)} style={{ width: shouldDisplayNotificationTriggerInSequence ? '100%' : null }}>
       {renderPreviousButton()}
       {renderUnitButtons()}
       {renderNextButton()}

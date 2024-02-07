@@ -22,7 +22,7 @@ const SidebarProvider = ({
   const [upgradeNotificationCurrentState, setUpgradeNotificationCurrentState] = useState(getLocalStorage(`upgradeNotificationCurrentState.${courseId}`));
 
   useEffect(() => {
-    setCurrentSidebar(SIDEBARS.DISCUSSIONS.ID);
+    window.screen.width < 992 ? setCurrentSidebar(null) : setCurrentSidebar(SIDEBARS.DISCUSSIONS.ID);
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [unitId]);
 
