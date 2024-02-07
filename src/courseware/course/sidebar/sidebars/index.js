@@ -16,5 +16,5 @@ export const SIDEBARS = {
 
 export const SIDEBAR_ORDER = [
   discusssions.ID,
-  notifications.ID,
+  // notifications.ID,
 ];
