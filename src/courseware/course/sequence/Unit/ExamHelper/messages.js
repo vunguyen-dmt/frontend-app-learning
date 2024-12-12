@@ -23,7 +23,7 @@ const messages = defineMessages({
   },
   submitAllSubmittableAnswersTitle: {
     id: 'exam-helper.submitAllSubmittableAnswersTitle',
-    defaultMessage: 'Submit answered problems',
+    defaultMessage: 'Submit all answered problems',
     description: '',
   },
   submitAllSubmittableAnswersMessage: {
