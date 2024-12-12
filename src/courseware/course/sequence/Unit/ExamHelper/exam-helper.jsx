@@ -110,7 +110,7 @@ const ExamHelper = ({
                 </li>
                 <li><FormattedMessage
                   id="exam-helper.selectedButUnsubmitted"
-                  defaultMessage="Number of selected but unsubmitted problems on this page"
+                  defaultMessage="Number of answered but unsubmitted problems on this page"
                 />: <span className={examStatResponse.selectedButUnsubmitted > 0 ? 'risk-text' : 'safe-text'}>{examStatResponse.selectedButUnsubmitted}</span>
                   { examStatResponse.selectedButUnsubmitted > 0 && <Button className="submit-unsubmitted-btn" variant="primary" size="sm" onClick={openSubmitAllAnswersModal}>{intl.formatMessage(messages.submitAllSubmittableAnswers)}</Button> }
                 </li>

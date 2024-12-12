@@ -8,27 +8,27 @@ const messages = defineMessages({
   },
   submitAllSubmittableAnswers: {
     id: 'exam-helper.submitAllSubmittableAnswers',
-    defaultMessage: 'Submit all selected but unsubmitted answers',
+    defaultMessage: 'Submit all answered problems',
     description: '',
   },
   yesSubmitAllSubmittableAnswers: {
     id: 'exam-helper.yesSubmitAllSubmittableAnswers',
-    defaultMessage: 'Yes, submit all selected but unsubmitted answers',
+    defaultMessage: 'Yes, submit all answered problems',
     description: '',
   },
   allSubmittableAnswersSubmitted: {
     id: 'exam-helper.allSubmittableAnswersSubmitted',
-    defaultMessage: 'All selected but unsubmitted answers have been submitted',
+    defaultMessage: 'All answered problems have been submitted',
     description: '',
   },
   submitAllSubmittableAnswersTitle: {
     id: 'exam-helper.submitAllSubmittableAnswersTitle',
-    defaultMessage: 'Submit all selected but unsubmitted answers',
+    defaultMessage: 'Submit all answered problems',
     description: '',
   },
   submitAllSubmittableAnswersMessage: {
     id: 'exam-helper.submitAllSubmittableAnswersMessage',
-    defaultMessage: 'Are you sure you want to submit all selected but unsubmitted answers on this page?',
+    defaultMessage: 'Are you sure you want to submit all answered problems on this page?',
     description: '',
   },
   noCloseModal: {
