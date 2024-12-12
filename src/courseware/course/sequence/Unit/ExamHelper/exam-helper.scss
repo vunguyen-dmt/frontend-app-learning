@@ -1,9 +1,12 @@
 .exam-helper-wrapper {
  .risk-text {
-    color: red;
+    color: #f44336;
  }
  .safe-text {
-    color: green;
+    color: #388e3c  ;
+ }
+ .warning-text {
+   color: #f57c00;
  }
  .hb {
     margin-top: 8px;
@@ -13,5 +16,10 @@
  }
  .stats {
     font-size: 1rem;
+    margin-left: -1rem;
  }
+}
+
+.submit-unsubmitted-btn {
+   margin-left: 1rem;
 }
