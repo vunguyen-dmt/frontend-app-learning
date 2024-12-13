@@ -1,13 +1,15 @@
 import {
   getConfig,
 } from '@edx/frontend-platform';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './exam-helper.scss';
 import {
   Alert, Button, ModalDialog, ActionRow, useToggle, Spinner, Toast,
 } from '@openedx/paragon';
 import { FormattedMessage, injectIntl, intlShape } from '@edx/frontend-platform/i18n';
+import { useSelector } from 'react-redux';
 import messages from './messages';
+import { useModel } from '../../../../../generic/model-store';
 
 const ExamHelper = ({
   intl,
@@ -18,6 +20,16 @@ const ExamHelper = ({
   const [submittingAllAnswers, setSubmittingAllAnswers] = useState(false);
   const [isSubmitAllAnswersModalOpen, openSubmitAllAnswersModal, closeSubmitAllAnswersModal] = useToggle(false);
   const [showSubmitAllAnswerFinishMessage, setShowSubmitAllAnswerFinishMessage] = useState(false);
+  const examStatResponseRef = useRef(examStatResponse);
+
+  const {
+    courseId,
+  } = useSelector(state => state.courseware);
+
+  const {
+    isMasquerading,
+    org,
+  } = useModel('courseHomeMeta', courseId);
 
   const updateExamStats = () => {
     const iframe = document.getElementById('unit-iframe');
@@ -68,7 +80,10 @@ const ExamHelper = ({
       if (event.origin === `${getConfig().LMS_BASE_URL}`) {
         const { action, payload } = event.data;
         if (action === 'gaEmitExamStats') {
-          setExamStatResponse(payload);
+          // update if it is not isMasquerading or update once if it is isMasquerading
+          if (!isMasquerading || (isMasquerading && payload.total !== examStatResponseRef.current?.total)) {
+            setExamStatResponse(payload);
+          }
         }
       }
     });
@@ -85,6 +100,10 @@ const ExamHelper = ({
   useEffect(() => {
     checkAllUnsubmittedAnswerSubmitted();
   }, [submittingAllAnswers, examStatResponse]);
+
+  useEffect(() => {
+    examStatResponseRef.current = examStatResponse;
+  }, [examStatResponse]);
 
   return (
     <>
@@ -112,7 +131,7 @@ const ExamHelper = ({
                   id="exam-helper.selectedButUnsubmitted"
                   defaultMessage="Number of answered but unsubmitted problems on this page"
                 />: <span className={examStatResponse.selectedButUnsubmitted > 0 ? 'risk-text' : 'safe-text'}>{examStatResponse.selectedButUnsubmitted}</span>
-                  { examStatResponse.selectedButUnsubmitted > 0 && <Button className="submit-unsubmitted-btn" variant="primary" size="sm" onClick={openSubmitAllAnswersModal}>{intl.formatMessage(messages.submitAllSubmittableAnswers)}</Button> }
+                  { examStatResponse.selectedButUnsubmitted > 0 && !isMasquerading && <Button className="submit-unsubmitted-btn" variant="primary" size="sm" onClick={openSubmitAllAnswersModal}>{intl.formatMessage(messages.submitAllSubmittableAnswers)}</Button> }
                 </li>
                 <li><FormattedMessage
                   id="exam-helper.unsubmitted"
@@ -179,9 +198,13 @@ const ExamHelper = ({
               </ModalDialog.Body>
               <ModalDialog.Footer>
                 <ActionRow>
-                  <ModalDialog.CloseButton variant="tertiary">
-                    {intl.formatMessage(messages.noCloseModal)}
-                  </ModalDialog.CloseButton>
+                  {
+                    !submittingAllAnswers && (
+                    <ModalDialog.CloseButton variant="tertiary">
+                      {intl.formatMessage(messages.noCloseModal)}
+                    </ModalDialog.CloseButton>
+                    )
+                  }
                   <Button variant="primary" onClick={submitAllUnsubmittedAnswers} disabled={submittingAllAnswers}>
                     {submittingAllAnswersText}
                     {
