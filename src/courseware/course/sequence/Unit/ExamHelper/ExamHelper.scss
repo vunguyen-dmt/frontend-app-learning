@@ -1,0 +1,25 @@
+.exam-helper-wrapper {
+ .risk-text {
+    color: #f44336;
+ }
+ .safe-text {
+    color: #388e3c  ;
+ }
+ .warning-text {
+   color: #f57c00;
+ }
+ .hb {
+    margin-top: 8px;
+    height: 1px;
+    width: 100%;
+    border-bottom: 1px solid;
+ }
+ .stats {
+    font-size: 1rem;
+    margin-left: -1rem;
+ }
+}
+
+.submit-unsubmitted-btn {
+   margin-left: 1rem;
+}

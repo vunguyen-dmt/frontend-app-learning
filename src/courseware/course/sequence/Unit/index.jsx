@@ -8,6 +8,10 @@ import { useIntl } from '@edx/frontend-platform/i18n';
 import { useModel } from '@src/generic/model-store';
 import { usePluginsCallback } from '@src/generic/plugin-store';
 
+import { useIsExam } from '@edx/frontend-lib-special-exams';
+import {
+  getConfig,
+} from '@edx/frontend-platform';
 import BookmarkButton from '../../bookmark/BookmarkButton';
 import messages from '../messages';
 import ContentIFrame from './ContentIFrame';
@@ -16,6 +20,7 @@ import { modelKeys, views } from './constants';
 import { useExamAccess, useShouldDisplayHonorCode } from './hooks';
 import { getIFrameUrl } from './urls';
 import UnitTitleSlot from '../../../../plugin-slots/UnitTitleSlot';
+import ExamHelper from './ExamHelper/ExamHelper';
 
 const Unit = ({
   courseId,
@@ -23,6 +28,8 @@ const Unit = ({
   onLoaded,
   id,
 }) => {
+  const isExam = useIsExam();
+
   const { formatMessage } = useIntl();
   const [searchParams] = useSearchParams();
   const { authenticatedUser } = React.useContext(AppContext);
@@ -65,6 +72,9 @@ const Unit = ({
         title={unit.title}
         courseId={courseId}
       />
+      {
+        getConfig().EXAM_HELPER_ENABLED && isExam && <ExamHelper />
+      }
     </div>
   );
 };
